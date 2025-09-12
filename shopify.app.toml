@@ -2,13 +2,13 @@
 
 client_id = "496e91cd7345661810022096ef236a65"
 name = "Ordery"
-application_url = "https://inch-refinance-jackson-disturbed.trycloudflare.com"
+application_url = "https://ordery-app.vercel.app"
 embedded = true
 handle = "ordery-1"
 
 [build]
 include_config_on_deploy = true
-automatically_update_urls_on_dev = true
+automatically_update_urls_on_dev = false
 
 [webhooks]
 api_version = "2025-07"
@@ -30,7 +30,7 @@ api_version = "2025-07"
 scopes = "read_orders,write_products"
 
 [auth]
-redirect_urls = ["https://inch-refinance-jackson-disturbed.trycloudflare.com/auth/callback", "https://inch-refinance-jackson-disturbed.trycloudflare.com/auth/shopify/callback", "https://inch-refinance-jackson-disturbed.trycloudflare.com/api/auth/callback"]
+redirect_urls = ["https://ordery-app.vercel.app/auth/callback", "https://ordery-app.vercel.app/auth/shopify/callback", "https://ordery-app.vercel.app/api/auth/callback"]
 
 [pos]
 embedded = false
