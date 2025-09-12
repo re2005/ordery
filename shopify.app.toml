@@ -2,7 +2,7 @@
 
 client_id = "496e91cd7345661810022096ef236a65"
 name = "Ordery"
-application_url = "https://ordery-app.vercel.app"
+application_url = "https://inch-refinance-jackson-disturbed.trycloudflare.com"
 embedded = true
 handle = "ordery-1"
 
@@ -30,7 +30,7 @@ api_version = "2025-07"
 scopes = "read_orders,write_products"
 
 [auth]
-redirect_urls = ["https://average-mt-expert-unknown.trycloudflare.com/auth/callback", "https://average-mt-expert-unknown.trycloudflare.com/auth/shopify/callback", "https://average-mt-expert-unknown.trycloudflare.com/api/auth/callback"]
+redirect_urls = ["https://inch-refinance-jackson-disturbed.trycloudflare.com/auth/callback", "https://inch-refinance-jackson-disturbed.trycloudflare.com/auth/shopify/callback", "https://inch-refinance-jackson-disturbed.trycloudflare.com/api/auth/callback"]
 
 [pos]
 embedded = false

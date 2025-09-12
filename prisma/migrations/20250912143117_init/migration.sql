@@ -1,0 +1,41 @@
+-- CreateTable
+CREATE TABLE "public"."Session" (
+    "id" TEXT NOT NULL,
+    "shop" TEXT NOT NULL,
+    "state" TEXT NOT NULL,
+    "isOnline" BOOLEAN NOT NULL DEFAULT false,
+    "scope" TEXT,
+    "expires" TIMESTAMP(3),
+    "accessToken" TEXT NOT NULL,
+    "userId" BIGINT,
+    "firstName" TEXT,
+    "lastName" TEXT,
+    "email" TEXT,
+    "accountOwner" BOOLEAN NOT NULL DEFAULT false,
+    "locale" TEXT,
+    "collaborator" BOOLEAN DEFAULT false,
+    "emailVerified" BOOLEAN DEFAULT false,
+
+    CONSTRAINT "Session_pkey" PRIMARY KEY ("id")
+);
+
+-- CreateTable
+CREATE TABLE "public"."OrderEvent" (
+    "id" TEXT NOT NULL,
+    "shop" TEXT NOT NULL,
+    "orderId" TEXT NOT NULL,
+    "name" TEXT NOT NULL,
+    "orderCreatedAt" TIMESTAMP(3) NOT NULL,
+    "email" TEXT,
+    "shippingAddrHash" TEXT,
+    "raw" JSONB,
+    "createdAt" TIMESTAMP(3) NOT NULL DEFAULT CURRENT_TIMESTAMP,
+
+    CONSTRAINT "OrderEvent_pkey" PRIMARY KEY ("id")
+);
+
+-- CreateIndex
+CREATE INDEX "OrderEvent_shop_createdAt_idx" ON "public"."OrderEvent"("shop", "createdAt");
+
+-- CreateIndex
+CREATE UNIQUE INDEX "OrderEvent_shop_orderId_key" ON "public"."OrderEvent"("shop", "orderId");
