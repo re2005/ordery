@@ -2,7 +2,7 @@
 
 client_id = "496e91cd7345661810022096ef236a65"
 name = "Ordery"
-application_url = "https://average-mt-expert-unknown.trycloudflare.com"
+application_url = "https://ordery-app.vercel.app"
 embedded = true
 handle = "ordery-1"
 
