@@ -25,7 +25,9 @@ export default function App() {
         <Link to="/app" rel="home">
           Home
         </Link>
-        <Link to="/app/events">Orders</Link>
+        <Link to="/app/pending">Pending Merges</Link>
+        <Link to="/app/merged">Merged orders</Link>
+        <Link to="/app/settings">Settings</Link>
       </NavMenu>
       <Outlet />
     </AppProvider>

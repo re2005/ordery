@@ -8,10 +8,6 @@ generator client {
 // Note that some adapters may set a maximum length for the String type by default, please ensure your strings are long
 // enough when changing adapters.
 // See https://www.prisma.io/docs/orm/reference/prisma-schema-reference#string for more information
-//datasource db {
-//  provider = "sqlite"
-//  url      = "file:dev.sqlite"
-//}
 
 datasource db {
   provider = "postgresql"
@@ -36,17 +32,42 @@ model Session {
   emailVerified Boolean?  @default(false)
 }
 
-model OrderEvent {
-  id               String   @id @default(cuid())
-  shop             String
-  orderId          String
-  name             String
-  orderCreatedAt   DateTime
-  email            String?
-  shippingAddrHash String?
-  raw              Json?
-  createdAt        DateTime @default(now())
+model OrderIndex {
+  id             String   @id            // gid://shopify/Order/...
+  shop           String
+  name           String
+  createdAt      DateTime
+  addressHash    String
+  emailHash      String?
+  status         String   // 'open' | 'replaced' | 'merged'
+  mergedGroupId  String?
+  updatedAt      DateTime @updatedAt
 
   @@index([shop, createdAt])
-  @@unique([shop, orderId])
+  @@index([shop, addressHash, createdAt])
+}
+
+model MergeGroup {
+  id             String   @id @default(cuid())
+  shop           String
+  windowMinutes  Int
+  originalIds    String[]  // order GIDs
+  draftOrderId   String?
+  newOrderId     String?
+  reason         String    // 'address_hash' | 'email_hash' | 'both'
+  status         String    // 'pending' | 'draft_created' | 'completed' | 'failed' | 'rejected'
+  createdAt      DateTime  @default(now())
+
+  @@index([shop, createdAt])
+}
+
+model ShopSettings {
+  shop              String  @id
+  windowMinutes     Int     @default(120)
+  byAddress         Boolean @default(true)
+  byEmail           Boolean @default(false)
+  requireBoth       Boolean @default(false)
+  autoCompleteDraft Boolean @default(true)
+  createdAt         DateTime @default(now())
+  updatedAt         DateTime @updatedAt
 }

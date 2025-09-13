@@ -1,18 +1,28 @@
-import type { ActionFunctionArgs } from "@remix-run/node";
+import type { ActionFunctionArgs, LoaderFunctionArgs } from "@remix-run/node";
 import shopify from "../shopify.server";
-import { saveOrderEvent } from "../models/events.server";
+import { detectAndMaybeGroup } from "../services/detector.server";
+import { performMerge } from "../services/merge.server";
+import { getSettings } from "../models/settings.server";
+
+export const loader = async (_: LoaderFunctionArgs) =>
+  new Response("Webhook endpoint. Use POST.", { status: 200 });
 
 export const action = async ({ request }: ActionFunctionArgs) => {
+  console.log("[webhook] incoming", request.headers.get("x-shopify-topic"));
   const { topic, shop, payload } = await shopify.authenticate.webhook(request);
 
   if (topic === "ORDERS_CREATE") {
-    await saveOrderEvent(shop, payload);
-    return new Response("ok", { status: 200 });
+    const group = await detectAndMaybeGroup(shop, payload);
+    if (group) {
+      const { admin } = await shopify.unauthenticated.admin(shop);
+      const settings = await getSettings(shop);
+      if (settings.autoCompleteDraft) {
+        await performMerge(admin, shop, {
+          id: group.id,
+          originalIds: group.originalIds,
+        });
+      }
+    }
   }
-
-  if (topic === "ORDERS_UPDATED") {
-    console.log("RENO: ORDERS_UPDATED");
-  }
-
-  return new Response("Unhandled", { status: 404 });
+  return new Response("ok", { status: 200 });
 };
