@@ -2,7 +2,7 @@
 
 client_id = "496e91cd7345661810022096ef236a65"
 name = "Ordery"
-application_url = "https://yrs-musical-girlfriend-favour.trycloudflare.com"
+application_url = "https://ordery-app.vercel.app/app"
 embedded = true
 handle = "ordery-app"
 
@@ -30,7 +30,7 @@ api_version = "2025-07"
 scopes = "read_orders,write_products,read_all_orders,write_orders,write_draft_orders"
 
 [auth]
-redirect_urls = ["https://yrs-musical-girlfriend-favour.trycloudflare.com/auth/callback", "https://yrs-musical-girlfriend-favour.trycloudflare.com/auth/shopify/callback", "https://yrs-musical-girlfriend-favour.trycloudflare.com/api/auth/callback"]
+redirect_urls = ["https://ordery-app.vercel.app/auth/callback", "https://ordery-app.vercel.app/auth/shopify/callback", "https://ordery-app.vercel.app/api/auth/callback"]
 
 [pos]
 embedded = false
