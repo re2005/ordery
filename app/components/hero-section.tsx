@@ -1,6 +1,6 @@
 export function HeroSection() {
   return (
-    <section className="hero">
+    <div className="hero">
       <div className="container">
         <div className="hero-content">
           <div className="hero-logo animate-float">
@@ -45,6 +45,6 @@ export function HeroSection() {
           <span className="icon icon-arrow-right"></span>
         </a>
       </div>
-    </section>
+    </div>
   );
 }
