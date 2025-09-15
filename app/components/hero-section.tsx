@@ -40,6 +40,10 @@ export function HeroSection() {
             </div>
           </div>
         </div>
+        <a href="/privacy" className="privacy-link">
+          Privacy Policy
+          <span className="icon icon-arrow-right"></span>
+        </a>
       </div>
     </section>
   );
