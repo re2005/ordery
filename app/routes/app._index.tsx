@@ -67,7 +67,9 @@ export default function Index() {
                         <Text as="h3" variant="headingSm">
                           Pending Merges Require Attention
                         </Text>
-                        <Badge tone="attention">{pendingCount}</Badge>
+                        <Badge tone="attention">
+                          {pendingCount.toString()}
+                        </Badge>
                       </InlineStack>
                       <Text as="p" variant="bodyMd">
                         You have {pendingCount} potential merge

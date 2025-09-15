@@ -5,6 +5,10 @@ import {
   Scripts,
   ScrollRestoration,
 } from "@remix-run/react";
+// Import global styles
+import stylesHref from "./styles.css?url";
+
+export const links = () => [{ rel: "stylesheet", href: stylesHref }];
 
 export default function App() {
   return (

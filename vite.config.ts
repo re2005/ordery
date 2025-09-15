@@ -2,6 +2,7 @@ import { vitePlugin as remix } from "@remix-run/dev";
 import { installGlobals } from "@remix-run/node";
 import { vercelPreset } from "@vercel/remix/vite";
 import { defineConfig, type UserConfig } from "vite";
+import path from "path";
 import tsconfigPaths from "vite-tsconfig-paths";
 
 installGlobals({ nativeFetch: true });
@@ -39,6 +40,11 @@ if (host === "localhost") {
 }
 
 export default defineConfig({
+  resolve: {
+    alias: {
+      "@": path.resolve(__dirname, "app"),
+    },
+  },
   server: {
     allowedHosts: [host],
     cors: {

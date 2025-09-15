@@ -5,7 +5,6 @@ import { AppProvider } from "@shopify/shopify-app-remix/react";
 import { NavMenu } from "@shopify/app-bridge-react";
 import polarisStyles from "@shopify/polaris/build/esm/styles.css?url";
 import en from "@shopify/polaris/locales/en.json";
-import { Frame } from "@shopify/polaris"; // Added for layout + logo
 
 import { authenticate } from "../shopify.server";
 
@@ -20,28 +19,17 @@ export const loader = async ({ request }: LoaderFunctionArgs) => {
 export default function App() {
   const { apiKey } = useLoaderData<typeof loader>();
 
-  // Polaris Frame logo configuration. Adjust width/height as needed.
-  const logo = {
-    topBarSource: "/ordery-logo.png",
-    contextualSaveBarSource: "/ordery-logo.png",
-    url: "/app",
-    accessibilityLabel: "Ordery",
-    width: 140,
-  };
-
   return (
     <AppProvider isEmbeddedApp apiKey={apiKey} i18n={en}>
-      <Frame logo={logo}>
-        <NavMenu>
-          <Link to="/app" rel="home">
-            Home
-          </Link>
-          <Link to="/app/pending">Pending Merges</Link>
-          <Link to="/app/merged">Merged orders</Link>
-          <Link to="/app/settings">Settings</Link>
-        </NavMenu>
-        <Outlet />
-      </Frame>
+      <NavMenu>
+        <Link to="/app" rel="home">
+          Home
+        </Link>
+        <Link to="/app/pending">Pending Merges</Link>
+        <Link to="/app/merged">Merged orders</Link>
+        <Link to="/app/settings">Settings</Link>
+      </NavMenu>
+      <Outlet />
     </AppProvider>
   );
 }

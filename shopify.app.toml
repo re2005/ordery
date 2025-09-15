@@ -2,13 +2,13 @@
 
 client_id = "496e91cd7345661810022096ef236a65"
 name = "Ordery"
-application_url = "https://ordery-app.vercel.app"
+application_url = "https://yrs-musical-girlfriend-favour.trycloudflare.com"
 embedded = true
-handle = "ordery-1"
+handle = "ordery-app"
 
 [build]
 include_config_on_deploy = true
-automatically_update_urls_on_dev = false
+automatically_update_urls_on_dev = true
 
 [webhooks]
 api_version = "2025-07"
@@ -30,7 +30,7 @@ api_version = "2025-07"
 scopes = "read_orders,write_products,read_all_orders,write_orders,write_draft_orders"
 
 [auth]
-redirect_urls = ["https://accounts-smithsonian-wet-pb.trycloudflare.com/auth/callback", "https://accounts-smithsonian-wet-pb.trycloudflare.com/auth/shopify/callback", "https://accounts-smithsonian-wet-pb.trycloudflare.com/api/auth/callback"]
+redirect_urls = ["https://yrs-musical-girlfriend-favour.trycloudflare.com/auth/callback", "https://yrs-musical-girlfriend-favour.trycloudflare.com/auth/shopify/callback", "https://yrs-musical-girlfriend-favour.trycloudflare.com/api/auth/callback"]
 
 [pos]
 embedded = false
