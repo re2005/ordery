@@ -131,6 +131,16 @@ export default function PrivacyPolicy() {
               However, no method of transmission over the Internet or method of
               electronic storage is 100% secure.
             </p>
+            <p>
+              Before we persist any customer-identifiable order attributes we
+              first transform (hash) them using a per-shop salt so that raw
+              email addresses and shipping addresses are not stored in
+              plaintext. Additionally, our database infrastructure is encrypted
+              at rest and in transit, and access is restricted to
+              least-privilege service credentials. This combination of hashing
+              and industry standard encryption helps mitigate the risk of
+              exposure in the unlikely event of a data breach.
+            </p>
           </Section>
 
           <Section title="Data Deletion & Merchant Controls">
