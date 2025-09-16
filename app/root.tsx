@@ -11,6 +11,8 @@ import stylesHref from "./styles.css?url";
 export const links = () => [{ rel: "stylesheet", href: stylesHref }];
 
 export default function App() {
+  // Hardcoded Google Analytics 4 Measurement ID as requested.
+  const GA_MEASUREMENT_ID = "G-GH291DY9MC";
   return (
     <html lang="en">
       <head>
@@ -24,6 +26,15 @@ export default function App() {
         />
         <Meta />
         <Links />
+        <script
+          async
+          src={`https://www.googletagmanager.com/gtag/js?id=${GA_MEASUREMENT_ID}`}
+        />
+        <script
+          dangerouslySetInnerHTML={{
+            __html: `window.dataLayer = window.dataLayer || [];\nfunction gtag(){dataLayer.push(arguments);}\ngtag('js', new Date());\ngtag('config', '${GA_MEASUREMENT_ID}');`,
+          }}
+        />
       </head>
       <body>
         <Outlet />
